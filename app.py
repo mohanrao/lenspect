@@ -52,8 +52,14 @@ def load_model():
     global model
     set_status("⏳ Loading AI model...", "#F59E0B")
     import sys as _sys, os as _os
-    _base = _sys._MEIPASS if getattr(_sys, 'frozen', False) else _os.path.dirname(_os.path.abspath(__file__))
-    model = YOLO(_os.path.join(_base, 'yolov8n.pt'))
+    if getattr(_sys, 'frozen', False):
+        # Bundled EXE: model is always extracted to _MEIPASS
+        model_path = _os.path.join(_sys._MEIPASS, 'yolov8n.pt')
+    else:
+        # Local run: look next to app.py first, then let Ultralytics auto-download
+        local = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'yolov8n.pt')
+        model_path = local if _os.path.exists(local) else 'yolov8n.pt'
+    model = YOLO(model_path)
     set_status("✅ AI model ready — enter camera details and connect.", "#22C55E")
 
 # ── UI helpers ────────────────────────────────────────────────────────

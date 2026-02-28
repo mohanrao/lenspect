@@ -24,10 +24,7 @@ jobs:
           pip install ultralytics opencv-python pyinstaller pillow numpy
 
       - name: Download YOLOv8 model
-        run: |
-          python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
-          copy "%USERPROFILE%\AppData\Roaming\Ultralytics\yolov8n.pt" yolov8n.pt
-        shell: cmd
+        run: python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
 
       - name: Build EXE with PyInstaller
         run: |
