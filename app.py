@@ -219,8 +219,9 @@ def toggle_connect():
 # ══════════════════════════════════════════════════════════════════════
 root = tk.Tk()
 root.title("Lenspect AI — Camera Monitor")
-root.geometry("540x640")
-root.resizable(False, False)
+root.geometry("540x780")
+root.resizable(True, True)
+root.minsize(500, 700)
 root.configure(bg="#0F172A")
 
 # ── Header ────────────────────────────────────────────────────────────
@@ -317,14 +318,16 @@ alert_label = tk.Label(card, text="Not connected",
                         anchor="w", wraplength=460)
 alert_label.pack(fill="x", pady=(0, 12))
 
-# Connect button
-connect_btn = tk.Button(card, text="🔌  Connect Camera",
+# Connect button — outside card, always visible
+btn_frame = tk.Frame(root, bg="#0F172A", padx=16, pady=8)
+btn_frame.pack(fill="x", side="bottom", before=footer)
+connect_btn = tk.Button(btn_frame, text="🔌  Connect Camera",
                          font=("Arial Black", 13),
                          bg="#0EA5E9", fg="white",
                          activebackground="#0284C7", activeforeground="white",
                          relief="flat", bd=0, cursor="hand2", pady=12,
                          command=toggle_connect)
-connect_btn.pack(fill="x", pady=(4, 0))
+connect_btn.pack(fill="x")
 
 # ── Footer ────────────────────────────────────────────────────────────
 footer = tk.Frame(root, bg="#0F172A", height=28)
