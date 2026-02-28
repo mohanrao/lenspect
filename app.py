@@ -51,7 +51,9 @@ def load_config():
 def load_model():
     global model
     set_status("⏳ Loading AI model...", "#F59E0B")
-    model = YOLO("yolov8n.pt")
+    import sys as _sys, os as _os
+    _base = _sys._MEIPASS if getattr(_sys, 'frozen', False) else _os.path.dirname(_os.path.abspath(__file__))
+    model = YOLO(_os.path.join(_base, 'yolov8n.pt'))
     set_status("✅ AI model ready — enter camera details and connect.", "#22C55E")
 
 # ── UI helpers ────────────────────────────────────────────────────────

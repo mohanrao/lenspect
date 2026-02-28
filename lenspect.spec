@@ -1,13 +1,12 @@
-# lenspect.spec
-# PyInstaller spec file — builds Lenspect AI into a single Windows .exe
-
 block_cipher = None
 
 a = Analysis(
     ['app.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[
+        ('yolov8n.pt', '.'),
+    ],
     hiddenimports=[
         'ultralytics',
         'cv2',
@@ -41,12 +40,11 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,          # No black terminal window — GUI only
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=None,              # Add icon.ico here later for branding
-    version_file=None,
+    icon=None,
 )
