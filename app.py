@@ -320,7 +320,7 @@ alert_label.pack(fill="x", pady=(0, 12))
 
 # Connect button — outside card, always visible
 btn_frame = tk.Frame(root, bg="#0F172A", padx=16, pady=8)
-btn_frame.pack(fill="x", side="bottom", before=footer)
+btn_frame.pack(fill="x")
 connect_btn = tk.Button(btn_frame, text="🔌  Connect Camera",
                          font=("Arial Black", 13),
                          bg="#0EA5E9", fg="white",
